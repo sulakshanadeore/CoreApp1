@@ -1,0 +1,271 @@
+asp.net mvc core
+---------------
+
+ MVC is a  architectural design pattern whic means it is used at an application architectural level.
+
+
+MVC--- folders
+Controller receives the request.
+1) creates the view
+2) domain/model data handling
+
+View
+----
+
+present the content to the user.
+It is Razor View Engine
+Minimal logic 
+
+Model
+-----
+Domain data and validations
+
+
+Asp.net mvc core comes with many features:
+
+1)Open source
+2)Cross Platform
+3) Full control over html and http: Full contol over html and can integrate with all javascript libraries and framework.
+4)Extensible framework: 
+ a) View Components
+ b)Tag helpers
+ c) Routing
+5) C# features---async and await
+
+
+
+
+
+Code Access Policy------CAS----
+Single Laptop
+1) usera---->admin----->change the code of the app/test/run
+2) userb----> run--->use
+3)userc--->run--->use
+4)userd--->run---->use
+
+
+App--->
+
+Unix---->App--->Kestrel
+Windows---->App--->
+
+
+Kestrel can understand the request from any OS kernel
+
+
+-->ASP.NET CORE MVC uses Kestrel(cross platform http server) default----->
+ IIS/Apache/Nginix
+
+
+Light weight------>Plug and Play
+
+
+
+Angular----> default port no: 4200(Node JS)
+
+
+
+Asp.net app(core)----> IIS/Kestrel----> 45252
+
+       	Cross Origin Requests:4200/2449
+		Angular
+45252	    	4200
+controllers----> Views
+
+
+1) asp.net mvc        
+1) Cors is downloaded using nuget package manager
+2) registrerd in the  routeconfig file
+3) contoller---enable cors for that controller
+
+
+
+
+asp.net mvc core----> Just a middeleware(app.Usecors)
+-----------------------------------------------------------------------------------
+
+Repository Pattern:
+
+Folder-----Working with the Data store----> Interface-----> abstract---->class---(prop)---->object
+which achieves loose coupling
+
+1) Create Model Class Category with catid,name,description
+
+2) create interface ICategoryRepository
+{
+List<Category> getAllCategories();
+void Insertcategory(Category c);
+void Updatecategory(int id,category c);
+void DeleteCategory(int id);
+Category FindCategory(int id);
+}
+
+3) class CategoryRepository:IcategoryRepositry
+{
+List<Category> getAllCategories(){}
+void Insertcategory(Category c){}
+void Updatecategory(int id,category c){}
+void DeleteCategory(int id){}
+Category FindCategory(int id){}
+}
+
+4) registering the dependency:
+         Icateory,categoryrepository
+Program.cs----(StartUp)
+1) Singleton:one object created and shared among all the components.
+ASP.NET core creates a single instance of the service(category repository) and shares this instance throughout the app life cycle.
+
+obj1:
+User 1 & User 2
+
+2)Transient:It creates an instance/object of the service(category repository) each time they are requested and the object never shared.
+
+user 1: obj1
+user 2: obj2
+     no state then transient
+
+
+3) Scoped: It creates an instance/object of the service(category repository) once per scoped ie on every request.
+Scoped:
+session---- prodid price
+
+
+
+
+4) Controller
+{
+
+GETAllAction
+InsertAction
+updateAction
+DeleteAction
+FindAction
+}
+
+
+1) properties
+2) constructor
+
+
+
+
+
+
+
+
+
+
+Dependency Injection-----> is a way of injecting(putting) the data whenever requiered without tight coupling.
+loose coupling
+
+
+
+tight coupling-----> strong dependency between the software components
+
+loose coupling------->
+
+General method-------> 
+
+List<Product> p
+
+Product/CreateProduct
+CreateProduct(Product p)
+{
+Insert Product
+
+
+}
+
+Category/CreateCategory
+CreateCategory(Categiry c)
+{
+Insert Product
+}
+
+----------------------
+
+interface
+
+create(c)
+{
+
+}
+
+
+
+
+
+CartModel----> orderid,custid,prodid,prodname,price,qty
+
+IcartRepository
+{
+AddItemToCart()
+removeItemFromCart()
+findItemIncart()
+ListofItems()
+UpateCart()
+
+
+}
+
+
+cart:Icartrepo
+{
+
+
+implement
+}
+
+
+//Scoped---->
+builder.services.AddScoped(typeof(Icartrepo),new Cart());
+builder.Services.AddSession()
+
+
+app.UseSession()
+
+
+User1:
+	Session//State of cart
+
+
+User2:
+	Session//State of cart
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
